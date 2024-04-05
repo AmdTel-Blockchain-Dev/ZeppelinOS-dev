@@ -1,34 +1,67 @@
-## Dev Env
-This project will require Node.js and npm. If your comfortable with this env you can probably skip most of thes steps.  I ran into some permissions problems and found the simplest solution was not to use a system installed node but rather develp on a user installed node version.
+## Setting up a Node project
+New software industries often start out with every project sharing the same technology stack. The Ethereum ecosystem is no exception, and the language of choice is JavaScript. All of the most used Ethereum libraries, including OpenZeppelin software, are written in JavaScript or one of its variants.
 
-Prefered Method: Reinstall npm with a Node version manager (recommended)
+JavaScript code is traditionally run on a web browser as part of a website, but it can be also executed as a standalone process using Node.
 
-fyi: [How to Prevent Permissions Errors when using NPM](https://docs.npmjs.com/getting-started/fixing-npm-permissions#how-to-prevent-permissions-errors)
+This guide will help you get your Node development environment set up, which you’ll need to use the different OpenZeppelin tools and other third party products.
 
-Run as a normal user:
+If you are already familiar with Node, npm and Git, feel free to skip this guide!
+Installing Node
+There are multiple ways to get Node on your machine: you can get it either via a package manager or by downloading the installer directly.
 
-```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-```
-(restart your terminal if nvm is not available on the command line.)
+If you are running Windows consider using Windows Subsystem for Linux as much of the ecosystem is written for Linux.
+Once you’re done, run node --version on a terminal to check your installation: any version of the 14.x or 16.x line should be compatible with most Ethereum software.
 
-Install the latest node version or choose which version you would like to develop with (e.g nvm install 8.0.0).
+```bash
+$ node --version
+v16.17.1
 ```
-nvm install node
+
+Creating a project
+JavaScript software is often bundled in packages, which are distributed via the npm registry. A package is simply a directory that contains a file called package.json, describing the package’s name, version, content, and others. When you build your own project, you will be creating a package, even if you don’t plan to distribute it.
+
+All Node installations include a command-line client for the npm registry, which you’ll use while developing your own projects. To start a new project, create a directory for it:
+
+```bash
+$ mkdir learn && cd learn
+Then we can initialize it:
 ```
-Check and install latest npm version:
+
+```bash
+$ npm init -y
 ```
-nvm install-latest-npm
+
+Simple as that! Your newly created package.json file will evolve as your project grows, such as when installing dependencies with npm install.
+
+JavaScript and npm are some of the most used software tools in the world: if you’re ever in doubt, you’ll find plenty of information about them online.
+Using npx
+There are two broads type of packages stored in the npm registry: libraries and executables. Installed libraries are used like any other piece of JavaScript code, but executables are special.
+
+A third binary was included when installing node: npx. This is used to run executables installed locally in your project.
+
+Whilst Truffle and Hardhat can be installed globally we recommend installing locally in each project so that you can control the version on a project by project basis.
+
+For clarity we’ll display the full command in our guides including npx so we don’t get errors due to the binary not being in the system path:
+
+```bash
+$ truffle init
+truffle: command not found
+$ npx truffle init
+- Fetching solc version list from solc-bin. Attempt #1
+
+Starting init...
+================
+
+> Copying project files to ...
+
+Init successful, sweet!
 ```
-Then install the ZeppelinOS package
-```
-npm install --global zos
-```
-### Setting up your project
-Brief summery of [Deploying your first project](https://docs.zeppelinos.org/docs/deploying.html) from ZeppelinOS Documents
-```
-mkdir my-project
-cd my-project
-npm init
-zos init my-project
-```
+
+Make sure you are inside your project’s directory when running npx! Otherwise, it will download the full executable again just to run that command, which most of the time is not what you want.
+Tracking with Version Control
+Before you get coding, you should add version control software to your project to track changes.
+
+By far, the most used tool is Git, often in conjunction with GitHub for hosting purposes. Indeed, you will find the full source code and history of all OpenZeppelin software in our GitHub repository.
+
+If you’ve never used Git before, a good starting place is the Git Handbook.
+Don’t commit secrets such as mnemonics, private keys and API keys to version control! Make sure you .gitignore files with secrets.

@@ -1,15 +1,12 @@
 {
   "name": "zeppelinos-dev",
   "version": "1.0.0",
-  "description": "",
+  "description": "New software industries often start out with every project sharing the same technology stack. The Ethereum ecosystem is no exception, and the language of choice is JavaScript. All of the most used Ethereum libraries, including OpenZeppelin software, are written in JavaScript or one of its variants.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "openzeppelin-eth": "^2.0.2",
-    "zos-lib": "^2.0.1"
-  }
+  "license": "ISC"
 }
